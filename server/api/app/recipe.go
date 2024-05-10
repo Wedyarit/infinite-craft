@@ -10,6 +10,8 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 type RecipeStoreProxy struct {
@@ -93,7 +95,7 @@ func (p *RecipeStoreProxy) GetByIngredients(firstIngredient string, secondIngred
 	newRecipe := &models.Recipe{
 		FirstIngredient:  firstIngredient,
 		SecondIngredient: secondIngredient,
-		Result:           recipeResponse.Result,
+		Result:           cases.Title(language.Und, cases.NoLower).String(recipeResponse.Result),
 		Emoji:            recipeResponse.Emoji,
 	}
 
