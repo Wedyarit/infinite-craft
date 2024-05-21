@@ -1,4 +1,4 @@
-module infinite-crafting
+module infinite-craft
 
 go 1.21
 

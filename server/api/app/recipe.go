@@ -4,9 +4,9 @@ import (
 	"context"
 	"net/http"
 
-	"infinite-crafting/ai"
+	"infinite-craft/ai"
 
-	"infinite-crafting/models"
+	"infinite-craft/models"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"

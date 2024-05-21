@@ -4,8 +4,8 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-pg/pg"
 
-	"infinite-crafting/ai"
-	"infinite-crafting/database"
+	"infinite-craft/ai"
+	"infinite-craft/database"
 )
 
 type API struct {

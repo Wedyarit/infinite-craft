@@ -3,7 +3,7 @@ package migrate
 import (
 	"log"
 
-	"infinite-crafting/database"
+	"infinite-craft/database"
 
 	"github.com/go-pg/migrations"
 	"github.com/go-pg/pg"

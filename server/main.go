@@ -1,6 +1,6 @@
 package main
 
-import "infinite-crafting/cmd"
+import "infinite-craft/cmd"
 
 func main() {
 	cmd.Execute()

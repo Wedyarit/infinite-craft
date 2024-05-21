@@ -1,9 +1,9 @@
 package api
 
 import (
-	"infinite-crafting/api/app"
-	"infinite-crafting/database"
-	"infinite-crafting/logging"
+	"infinite-craft/api/app"
+	"infinite-craft/database"
+	"infinite-craft/logging"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/cors"

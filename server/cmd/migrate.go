@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
-	"infinite-crafting/database/migrate"
+	"infinite-craft/database/migrate"
 )
 
 var reset bool

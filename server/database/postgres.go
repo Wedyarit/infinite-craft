@@ -13,7 +13,7 @@ func DBConn() (*pg.DB, error) {
 	viper.SetDefault("db_addr", "localhost:5432")
 	viper.SetDefault("db_user", "postgres")
 	viper.SetDefault("db_password", "postgres")
-	viper.SetDefault("db_database", "infinite_crafting")
+	viper.SetDefault("db_database", "infinite_craft")
 
 	db := pg.Connect(&pg.Options{
 		Network:  viper.GetString("db_network"),

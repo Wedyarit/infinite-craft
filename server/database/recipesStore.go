@@ -2,7 +2,7 @@ package database
 
 import (
 	"errors"
-	"infinite-crafting/models"
+	"infinite-craft/models"
 
 	"github.com/go-pg/pg"
 )
