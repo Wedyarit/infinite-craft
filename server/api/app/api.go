@@ -10,6 +10,7 @@ import (
 
 type API struct {
 	Recipe *RecipeResource
+	Player *PlayerResource
 }
 
 func NewAPI(db *pg.DB) (*API, error) {
@@ -25,8 +26,12 @@ func NewAPI(db *pg.DB) (*API, error) {
 		client,
 	))
 
+	PlayerStore := database.NewPlayerStore(db)
+	Player := NewPlayerResource(PlayerStore)
+
 	api := &API{
 		Recipe: Recipe,
+		Player: Player,
 	}
 	return api, nil
 }
@@ -34,7 +39,8 @@ func NewAPI(db *pg.DB) (*API, error) {
 func (a *API) Router() *chi.Mux {
 	r := chi.NewRouter()
 
-	r.Mount("/recipe", a.Recipe.router())
+	r.Mount("/recipe", a.Recipe.Router())
+	r.Mount("/players", a.Player.Router())
 
 	return r
 }

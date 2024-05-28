@@ -6,7 +6,8 @@ import (
 	"github.com/go-pg/migrations"
 )
 
-const recipeTable = `
+const (
+	recipeTable = `
 CREATE TABLE recipes (
     id serial NOT NULL,
     created_at timestamp with time zone NOT NULL DEFAULT current_timestamp,
@@ -14,17 +15,30 @@ CREATE TABLE recipes (
     first_ingredient text NOT NULL,
     second_ingredient text NOT NULL,
     result text NOT NULL,
-	emoji text NOT NULL,
+    emoji text NOT NULL,
     PRIMARY KEY (id)
 )`
+
+	playerTable = `
+CREATE TABLE players (
+    id serial NOT NULL,
+    created_at timestamp with time zone NOT NULL DEFAULT current_timestamp,
+    updated_at timestamp with time zone DEFAULT current_timestamp,
+    nickname text NOT NULL UNIQUE,
+    score int NOT NULL,
+    PRIMARY KEY (id)
+)`
+)
 
 func init() {
 	up := []string{
 		recipeTable,
+		playerTable,
 	}
 
 	down := []string{
 		`DROP TABLE recipes`,
+		`DROP TABLE players`,
 	}
 
 	migrations.Register(func(db migrations.DB) error {

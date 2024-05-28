@@ -42,7 +42,7 @@ func NewRecipeResource(store RecipeStoreProxy) *RecipeResource {
 	}
 }
 
-func (rs *RecipeResource) router() *chi.Mux {
+func (rs *RecipeResource) Router() *chi.Mux {
 	r := chi.NewRouter()
 	r.Get("/", rs.get)
 	return r
