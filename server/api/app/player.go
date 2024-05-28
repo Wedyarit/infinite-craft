@@ -62,7 +62,22 @@ func (rs *PlayerResource) getLeaders(w http.ResponseWriter, r *http.Request) {
 		players = []*models.Player{}
 	}
 
-	render.Respond(w, r, players)
+	type LeaderResponse struct {
+		Place    int    `json:"place"`
+		Nickname string `json:"nickname"`
+		Score    int    `json:"score"`
+	}
+
+	var leaderResponses []*LeaderResponse
+	for place, player := range players {
+		leaderResponses = append(leaderResponses, &LeaderResponse{
+			Place:    place + 1,
+			Nickname: player.Nickname,
+			Score:    player.Score,
+		})
+	}
+
+	render.Respond(w, r, leaderResponses)
 }
 
 func (rs *PlayerResource) createOrUpdatePlayer(w http.ResponseWriter, r *http.Request) {
