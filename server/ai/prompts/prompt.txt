@@ -1,1 +1,1 @@
-Что получится, если объединить {firstIngredient} + {secondIngredient} =
+Что получится, если объединить элементы {firstIngredient} и {secondIngredient}?

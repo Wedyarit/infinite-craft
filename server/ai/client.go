@@ -44,8 +44,9 @@ func (c *Client) GenerateRecipe(ctx context.Context, firstIngredient, secondIngr
 	}
 
 	resp, err := c.CreateChatCompletion(ctx, openai.ChatCompletionRequest{
-		Model:    openai.GPT3Dot5Turbo,
-		Messages: dialogue,
+		Model:       openai.GPT3Dot5Turbo,
+		Messages:    dialogue,
+		Temperature: 0.7,
 	})
 
 	if err != nil || len(resp.Choices) != 1 {
@@ -76,7 +77,6 @@ func generatePromptFromFile(filename, firstIngredient, secondIngredient string) 
 		line = strings.ReplaceAll(line, "{firstIngredient}", firstIngredient)
 		line = strings.ReplaceAll(line, "{secondIngredient}", secondIngredient)
 		content.WriteString(line)
-		content.WriteString("\n")
 	}
 	if err := scanner.Err(); err != nil {
 		return "", fmt.Errorf("error reading the file: %v", err)

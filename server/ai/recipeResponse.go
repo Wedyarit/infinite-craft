@@ -3,6 +3,7 @@ package ai
 import (
 	"errors"
 	"strings"
+	"unicode"
 )
 
 type RecipeResponse struct {
@@ -11,6 +12,13 @@ type RecipeResponse struct {
 }
 
 func NewRecipeResponseFromJSON(response string) (*RecipeResponse, error) {
+	response = strings.Map(func(r rune) rune {
+		if unicode.IsPunct(r) {
+			return -1
+		}
+		return r
+	}, response)
+
 	response = strings.ReplaceAll(response, "\n", "")
 
 	parts := strings.Split(response, " ")
