@@ -38,7 +38,7 @@ const [, drop] = useDrop(() => ({
       }
       store.boxes[props.id].loading = true
       try {
-        const response = await axios.get(`http://127.0.0.1:3000/api/recipe?first_ingredient=${store.boxes[props.id].title}&second_ingredient=${secondTitle}`)
+        const response = await axios.get(`http://77.221.139.206:3000/api/recipe?first_ingredient=${store.boxes[props.id].title}&second_ingredient=${secondTitle}`)
         const resultAnswer = response.data.result || store.boxes[props.id].title
         const resultEmoji = response.data.emoji || store.boxes[props.id].emoji
 

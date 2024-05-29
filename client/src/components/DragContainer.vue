@@ -3,10 +3,11 @@ import {useDrop, type XYCoord} from 'vue3-dnd'
 import {ItemTypes} from './ItemTypes'
 import DraggableBox from './DraggableBox.vue'
 import type {DragItem} from './interfaces'
-import {ref} from 'vue'
+import {computed, ref} from 'vue'
 import ItemCard from "@/components/ItemCard.vue";
 import AvailableResources from "@/components/AvailableResources.vue";
 import {useBoxesStore} from "@/stores/useBoxesStore";
+import LeaderBoard from "@/components/LeaderBoard.vue";
 
 const store = useBoxesStore()
 const {boxes} = store
@@ -44,6 +45,12 @@ const [, drop] = useDrop(() => ({
     }
   },
 }))
+
+const selectedTab = ref('resources') // State to track selected tab
+
+const activeComponent = computed(() => {
+  return selectedTab.value === 'resources' ? AvailableResources : LeaderBoard
+})
 </script>
 
 <template>
@@ -64,8 +71,16 @@ const [, drop] = useDrop(() => ({
         </div>
       </div>
       <div class="w-1/4 bg-white shadow px-4 py-3 border-gray-200 border rounded-lg overflow-y-scroll max-h-[80vh]">
-        <h2 class="font-semibold">Ресурсы</h2>
-        <AvailableResources></AvailableResources>
+        <div class="flex gap-x-2 mb-4">
+          <button @click="selectedTab = 'resources'" :class="{ 'font-bold': selectedTab === 'resources' }"
+                  class="tab-button">Ресурсы
+          </button>
+          <button @click="selectedTab = 'leaders'" :class="{ 'font-bold': selectedTab === 'leaders' }"
+                  class="tab-button">Лидеры
+          </button>
+        </div>
+        <h2 class="font-semibold">{{ selectedTab === 'resources' ? 'Ресурсы' : 'Лидеры' }}</h2>
+        <component :is="activeComponent"></component>
       </div>
     </main>
   </div>
@@ -76,5 +91,26 @@ const [, drop] = useDrop(() => ({
   position: relative;
   width: 100%;
   height: 90vh;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 12px;
+  font-size: 1.1rem;
+  text-align: center;
+  background-color: #f3f3f3;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.tab-button:hover {
+  background-color: #e3e3e3;
+}
+
+.tab-button.font-bold {
+  font-weight: bold;
+  background-color: #d3d3d3;
 }
 </style>
